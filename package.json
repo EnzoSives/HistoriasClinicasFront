@@ -1,0 +1,26 @@
+{
+  "name": "historias-clinicas",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "vue-tsc && vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@formkit/vue": "^1.4.0",
+    "bootstrap": "^5.3.2",
+    "mdb-vue-ui-kit": "^4.1.1",
+    "popper.js": "^1.16.1",
+    "vue": "^3.3.11",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vue-cli-plugin-mdb5": "~2.1.0",
+    "vue-tsc": "^1.8.25"
+  },
+  "type": "module"
+}
