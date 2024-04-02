@@ -7,7 +7,7 @@
       </v-card-title>
 
       <v-card-actions class="grey darken-3 justify-center text-center"> <!-- Añadida la clase text-center aquí -->
-        &copy;2024 — <strong>Vuetify</strong>
+        &copy;2024 
       </v-card-actions>
     </v-card>
   </v-footer>
