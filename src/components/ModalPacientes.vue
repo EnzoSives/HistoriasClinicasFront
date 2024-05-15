@@ -15,37 +15,7 @@
             <p><strong>Edad:</strong> {{ paciente.edad }}</p>
             <p><strong>Teléfono:</strong> {{ paciente.telefonoCelular }}</p>
           </div>
-          
-          <button type="button" class="btn btn-primary">Agregar Consulta</button>
-          
-          <!-- Condición para mostrar consultas o un mensaje si no hay consultas -->
-          <div v-if="consultas.length > 0">
-            <div v-for="(consulta, index) in paginatedConsultas" :key="index" class="card">
-              <div class="card-body">
-                <h5 class="card-title">{{ formatearFecha(consulta.fechaHoraInicio) }}</h5>
-                <p class="card-text">{{ consulta.motivoConsulta }}</p>
-                <button type="button" class="btn btn-outline-primary" @click="verObservaciones(consulta.observaciones)">Ver Observaciones</button>
-              </div>
-            </div>
-          </div>
-          <div v-else>
-            <p>No hay consultas registradas para este paciente.</p>
-          </div>
 
-          <!-- Paginador, solo se muestra si hay consultas -->
-          <ul v-if="consultas.length > 0" class="pagination justify-content-end mt-3">
-            <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
-              <a class="page-link" @click="setPage(currentPage - 1)">Anterior</a>
-            </li>
-            <li v-for="page in totalPages" :key="page" class="page-item" :class="{ 'active': currentPage === page }">
-              <a class="page-link" @click="setPage(page)">{{ page }}</a>
-            </li>
-            <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
-              <a class="page-link" @click="setPage(currentPage + 1)">Siguiente</a>
-            </li>
-          </ul>
-
-          <ObservacionesModal :showModal="showObservacionesModal" :observaciones="observacionesModalContent" @cerrar="cerrarObservacionesModal" />
         </div>
       </div>
     </div>
@@ -53,12 +23,12 @@
 </template>
 
 <script>
-import ObservacionesModal from '../components/ModalObservaciones.vue';
+
 
 export default {
   props: {
     showModal: Boolean,
-    consultas: Array,
+  
     paciente: Object,  // Añadido para recibir los datos del paciente
     itemsPerPage: {
       type: Number,
@@ -66,7 +36,7 @@ export default {
     },
   },
   components: {
-    ObservacionesModal,
+   
   },
   data() {
     return {
