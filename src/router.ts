@@ -6,11 +6,11 @@ import Consultas from './components/AgregarConsulta.vue';
 import './axios'
 
 const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/',
-        name: 'Home',
-        component: Home,
-      },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+  },
   {
     path: '/pacientes',
     name: 'Pacientes',

@@ -1,616 +1,326 @@
 <template>
   <div class="card">
-    <div class="card-header">Nuevo Paciente</div>
+    <div class="card-header">Primer consulta</div>
     <div class="card-body">
-      <!-- Primera fila de cuatro inputs -->
       <div class="row align-items-start">
         <div class="col">
-          <div class="mb-3">
-            <label for="floatingInput" class="form-label">Nombre</label>
-            <input
-              v-model="nuevoPaciente.nombre"
-              type="text"
-              class="form-control"
-              id="input1"
-            />
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="mb-3">
-            <label for="input2" class="form-label">Apellido</label>
-            <input
-              v-model="nuevoPaciente.apellido"
-              type="text"
-              class="form-control"
-              id="input2"
-              rows="3"
-            />
-          </div>
-        </div>
-
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="input3" class="form-label">DNI</label>
-              <input
-                v-model="nuevoPaciente.dni"
-                type="text"
-                class="form-control"
-                id="input3"
-                rows="3"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-3"></div>
-          </div>
+          <FormKit type="text" name="nombre" v-model="nuevoPaciente.nombre" label="Nombre" />
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="input4" class="form-label">Sexo</label>
-            <input
-              v-model="nuevoPaciente.sexo"
-              type="text"
-              class="form-control"
-              id="input4"
-              placeholder=""
-            />
-          </div>
+          <FormKit type="text" name="apellido" v-model="nuevoPaciente.apellido" label="Apellido" />
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="input5" class="form-label">Edad</label>
-            <input
-              v-model="nuevoPaciente.edad"
-              type="text"
-              class="form-control"
-              id="input5"
-              placeholder=""
-            />
-          </div>
+          <FormKit type="text" name="dni" v-model="nuevoPaciente.dni" label="DNI" />
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="input6" class="form-label">Fecha de nacimiento</label>
-            <input
-              v-model="nuevoPaciente.fechaNacimiento"
-              type="date"
-              class="form-control"
-              id="input6"
-              rows="3"
-            />
-          </div>
+          <FormKit type="select" name="sexo" v-model="nuevoPaciente.sexo" label="Sexo" >
+            <option value="">Selecciona sexo</option>
+            <option value="soltero">Masculino</option>
+            <option value="casado">Femenino</option>
+            <option value="casado">X</option>
+          </FormKit>
+        </div>
+        <div class="col">
+          <FormKit type="date" name="fechaNacimiento" v-model="nuevoPaciente.fechaNacimiento" label="Fecha de nacimiento" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="edad" v-model="nuevoPaciente.edad" label="Edad" />
         </div>
       </div>
       <div class="row align-items-start">
         <div class="col">
-          <div class="mb-3">
-            <label for="input7" class="form-label">Lugar de nacimiento</label>
-            <input
-              v-model="nuevoPaciente.lugarNacimiento"
-              type="text"
-              class="form-control"
-              id="input7"
-              rows="3"
-            />
-          </div>
+          <FormKit type="text" name="lugarNacimiento" v-model="nuevoPaciente.lugarNacimiento" label="Lugar de nacimiento" />
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="input8" class="form-label">Direccion</label>
-            <input
-              v-model="nuevoPaciente.direccion"
-              type="text"
-              class="form-control"
-              id="input8"
-              placeholder=""
-            />
-          </div>
+          <FormKit type="text" name="direccion" v-model="nuevoPaciente.direccion" label="Direccion" />
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="input5" class="form-label">Telefono fijo</label>
-            <input
-              v-model="nuevoPaciente.telefonoFijo"
-              type="text"
-              class="form-control"
-              id="input5"
-              placeholder=""
-            />
-          </div>
+          <FormKit type="text" name="telefonoFijo" v-model="nuevoPaciente.telefonoFijo" label="Telefono fijo" />
         </div>
       </div>
       <div class="row align-items-start">
         <div class="col">
-          <div class="mb-3">
-            <label for="input6" class="form-label">Telefono celular</label>
-            <input
-              v-model="nuevoPaciente.telefonoCelular"
-              type="text"
-              class="form-control"
-              id="input6"
-              rows="3"
-            />
-          </div>
+          <FormKit type="text" name="telefonoCelular" v-model="nuevoPaciente.telefonoCelular" label="Telefono celular" />
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="input7" class="form-label">Ocupacion</label>
-            <input
-              v-model="nuevoPaciente.ocupacion"
-              type="text"
-              class="form-control"
-              id="input7"
-              rows="3"
-            />
-          </div>
+          <FormKit type="text" name="ocupacion" v-model="nuevoPaciente.ocupacion" label="Ocupacion" />
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="estadoCivil" class="form-label">Estado Civil</label>
-            <select
-              v-model="nuevoPaciente.estadoCivil"
-              class="form-select"
-              id="estadoCivil"
-            >
-              <option value="" selected>Selecciona estado civil</option>
-              <option value="soltero">Soltero</option>
-              <option value="casado">Casado</option>
-              <option value="divorciado">Divorciado</option>
-              <option value="viudo">Viudo</option>
-              <!-- Agrega más opciones según sea necesario -->
-            </select>
-          </div>
+          <FormKit type="select" name="estadoCivil" v-model="nuevoPaciente.estadoCivil" label="Estado Civil">
+            <option value="">Selecciona estado civil</option>
+            <option value="soltero">Soltero</option>
+            <option value="casado">Casado</option>
+            <option value="divorciado">Divorciado</option>
+            <option value="viudo">Viudo</option>
+          </FormKit>
         </div>
       </div>
       <div class="row align-items-start">
         <div class="col">
-          <div class="mb-3">
-            <label for="input5" class="form-label">Obra social</label>
-            <input
-              v-model="nuevoPaciente.obraSocial"
-              type="text"
-              class="form-control"
-              id="input5"
-              placeholder=""
-            />
-          </div>
+          <FormKit type="text" name="obraSocial" v-model="nuevoPaciente.obraSocial" label="Obra social" />
         </div>
         <div class="col">
-          <div class="mb-3">
-            <label for="input6" class="form-label">N° Afiliado</label>
-            <input
-              v-model="nuevoPaciente.afiliadoObraSocial"
-              type="text"
-              class="form-control"
-              id="input6"
-              rows="3"
-            />
-          </div>
+          <FormKit type="text" name="afiliadoObraSocial" v-model="nuevoPaciente.afiliadoObraSocial" label="N° Afiliado" />
         </div>
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="antecedentesPersonalesMedicos" class="form-label"
-                >Antecedentes Personales Médicos</label
-              >
-              <input
-                v-model="nuevoPaciente.antecedentesPersonalesMedicos"
-                class="form-control"
-                id="antecedentesPersonalesMedicos"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="antecedentesQuirurgicos" class="form-label"
-                >Antecedentes Quirúrgicos</label
-              >
-              <input
-                v-model="nuevoPaciente.antecedentesQuirurgicos"
-                class="form-control"
-                id="antecedentesQuirurgicos"
-                rows="3"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="alergias" class="form-label">Alergias</label>
-              <input
-                v-model="nuevoPaciente.alergias"
-                class="form-control"
-                id="alergias"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="antecedentesHeredoFamiliares" class="form-label"
-                >Antecedentes HeredoFamiliares</label
-              >
-              <input
-                v-model="nuevoPaciente.antecedentesHeredoFamiliares"
-                class="form-control"
-                id="antecedentesHeredoFamiliares"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="habitosToxicos" class="form-label"
-                >Hábitos Tóxicos</label
-              >
-              <input
-                v-model="nuevoPaciente.habitosToxicos"
-                class="form-control"
-                id="habitosToxicos"
-                rows="3"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="medicacionHabitual" class="form-label"
-                >Medicación Habitual</label
-              >
-              <input
-                v-model="nuevoPaciente.medicacionHabitual"
-                class="form-control"
-                id="medicacionHabitual"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoHabito" class="form-label"
-                >Examen Físico Hábito</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoHabito"
-                class="form-control"
-                id="examenFisicoHabito"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoPeso" class="form-label"
-                >Examen Físico Peso</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoPeso"
-                type="number"
-                class="form-control"
-                id="examenFisicoPeso"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoTalla" class="form-label"
-                >Examen Físico Talla</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoTalla"
-                type="number"
-                class="form-control"
-                id="examenFisicoTalla"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoIMC" class="form-label"
-                >Examen Físico IMC</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoIMC"
-                type="number"
-                class="form-control"
-                id="examenFisicoIMC"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoTA" class="form-label"
-                >Examen Físico TA</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoTA"
-                type="text"
-                class="form-control"
-                id="examenFisicoTA"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoFC" class="form-label"
-                >Examen Físico FC</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoFC"
-                type="text"
-                class="form-control"
-                id="examenFisicoFC"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoFR" class="form-label"
-                >Examen Físico FR</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoFR"
-                type="text"
-                class="form-control"
-                id="examenFisicoFR"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoTemperatura" class="form-label"
-                >Examen Físico Temperatura</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoTemperatura"
-                type="text"
-                class="form-control"
-                id="examenFisicoTemperatura"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoSistemaNervioso" class="form-label"
-                >Examen Físico Sistema Nervioso</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoSistemaNervioso"
-                class="form-control"
-                id="examenFisicoSistemaNervioso"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoAPCardiovascular" class="form-label"
-                >Examen Físico Aparato Cardiovascular</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoAPCardiovascular"
-                class="form-control"
-                id="examenFisicoAPCardiovascular"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoAPRespiratorio" class="form-label"
-                >Examen Físico Aparato Respiratorio</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoAPRespiratorio"
-                class="form-control"
-                id="examenFisicoAPRespiratorio"
-                rows="3"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoAPDigestivo" class="form-label"
-                >Examen Físico Aparato Digestivo</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoAPDigestivo"
-                class="form-control"
-                id="examenFisicoAPDigestivo"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoAPGenitourinario" class="form-label"
-                >Examen Físico Aparato Genitourinario</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoAPGenitourinario"
-                class="form-control"
-                id="examenFisicoAPGenitourinario"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoSistemaEndocrino" class="form-label"
-                >Examen Físico Sistema Endocrino</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoSistemaEndocrino"
-                class="form-control"
-                id="examenFisicoSistemaEndocrino"
-                rows="3"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="row align-items-start">
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoSistemaHematopoyetico" class="form-label"
-                >Examen Físico Sistema Hematopoyético</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoSistemaHematopoyetico"
-                class="form-control"
-                id="examenFisicoSistemaHematopoyetico"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label
-                for="examenFisicoSistemaMusculoEsqueletico"
-                class="form-label"
-                >Examen Físico Sistema Musculoesquelético</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoSistemaMusculoEsqueletico"
-                class="form-control"
-                id="examenFisicoSistemaMusculoEsqueletico"
-                rows="3"
-              />
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="mb-3">
-              <label for="examenFisicoPielAnexos" class="form-label"
-                >Examen Físico Piel y Anexos</label
-              >
-              <input
-                v-model="nuevoPaciente.examenFisicoPielAnexos"
-                class="form-control"
-                id="examenFisicoPielAnexos"
-                rows="3"
-              />
-            </div>
-          </div>
+        <div class="col">
+          <FormKit type="text" name="antecedentesPersonalesMedicos" v-model="nuevoPaciente.antecedentesPersonalesMedicos" label="Antecedentes Personales Médicos" />
         </div>
       </div>
       <div class="row align-items-start">
-        <!-- Add a button to trigger the form submission -->
         <div class="col">
-          <button @click="guardarPaciente" class="btn btn-primary">
-            Guardar Paciente
-          </button>
-          <button class="btn btn-danger">
-            <router-link to="/" class="router-link">Cancelar</router-link>
-          </button>
+          <FormKit type="text" name="antecedentesQuirurgicos" v-model="nuevoPaciente.antecedentesQuirurgicos" label="Antecedentes Quirúrgicos" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="alergias" v-model="nuevoPaciente.alergias" label="Alergias" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="antecedentesHeredoFamiliares" v-model="nuevoPaciente.antecedentesHeredoFamiliares" label="Antecedentes HeredoFamiliares" />
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col">
+          <FormKit type="text" name="habitosToxicos" v-model="nuevoPaciente.habitosToxicos" label="Hábitos Tóxicos" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="medicacionHabitual" v-model="nuevoPaciente.medicacionHabitual" label="Medicación Habitual" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoHabito" v-model="nuevoPaciente.examenFisicoHabito" label="Examen Físico Hábito" />
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col">
+          <FormKit type="number" name="examenFisicoPeso" v-model="nuevoPaciente.examenFisicoPeso" label="Examen Físico Peso" />
+        </div>
+        <div class="col">
+          <FormKit type="number" name="examenFisicoTalla" v-model="nuevoPaciente.examenFisicoTalla" label="Examen Físico Talla" />
+        </div>
+        <div class="col">
+          <FormKit type="number" name="examenFisicoIMC" v-model="nuevoPaciente.examenFisicoIMC" label="Examen Físico IMC" />
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col">
+          <FormKit type="text" name="examenFisicoTA" v-model="nuevoPaciente.examenFisicoTA" label="Examen Físico TA" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoFC" v-model="nuevoPaciente.examenFisicoFC" label="Examen Físico FC" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoFR" v-model="nuevoPaciente.examenFisicoFR" label="Examen Físico FR" />
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col">
+          <FormKit type="text" name="examenFisicoTemperatura" v-model="nuevoPaciente.examenFisicoTemperatura" label="Examen Físico Temperatura" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoSistemaNervioso" v-model="nuevoPaciente.examenFisicoSistemaNervioso" label="Examen Físico Sistema Nervioso" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoAPCardiovascular" v-model="nuevoPaciente.examenFisicoAPCardiovascular" label="Examen Físico Aparato Cardiovascular" />
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col">
+          <FormKit type="text" name="examenFisicoAPRespiratorio" v-model="nuevoPaciente.examenFisicoAPRespiratorio" label="Examen Físico Aparato Respiratorio" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoAPDigestivo" v-model="nuevoPaciente.examenFisicoAPDigestivo" label="Examen Físico Aparato Digestivo" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoAPGenitourinario" v-model="nuevoPaciente.examenFisicoAPGenitourinario" label="Examen Físico Aparato Genitourinario" />
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col">
+          <FormKit type="text" name="examenFisicoSistemaEndocrino" v-model="nuevoPaciente.examenFisicoSistemaEndocrino" label="Examen Físico Sistema Endocrino" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoSistemaHematopoyetico" v-model="nuevoPaciente.examenFisicoSistemaHematopoyetico" label="Examen Físico Sistema Hematopoyético" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoAPLocomotor" v-model="nuevoPaciente.examenFisicoAPLocomotor" label="Examen Físico Aparato Locomotor" />
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col">
+          <FormKit type="text" name="impresionDiagnostica" v-model="nuevoPaciente.impresionDiagnostica" label="Impresión Diagnóstica" />
+        </div>
+        <div class="col">
+          <FormKit type="file" accept=".pdf,.png,.jpg" name="archivo" fileRemove noFile='false' help="Solo perimite archivos .jpg .png" @change="onFileChange" label="Adjuntar Archivo" />
         </div>
       </div>
     </div>
+    <div class="card-footer">
+      <button class="btn-guardar" @click="guardarPaciente">Guardar</button>
+      <button class="btn-cancelar" @click="volver" >Cancelar</button>
+    </div>
   </div>
-</template> 
+</template>
+
 <script>
-// Import Axios
-import axios from "axios";
+import { ref, watch} from 'vue'
+import { FormKit } from '@formkit/vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 export default {
-  data() {
-    return {
-      nuevoPaciente: {
-        nombre: "",
-        apellido: "",
-        dni: "",
-        sexo: "",
-        edad: "",
-        fechaNacimiento: "",
-        lugarNacimiento: "",
-        direccion: "",
-        telefonoFijo: "",
-        telefonoCelular: "",
-        ocupacion: "",
-        estadoCivil: "",
-        obraSocial: "",
-        afiliadoObraSocial: "",
-        antecedentesPersonalesMedicos: "",
-        antecedentesQuirurgicos: "",
-        alergias: "",
-        antecedentesHeredoFamiliares: "",
-        habitosToxicos: "",
-        medicacionHabitual: "",
-        examenFisicoHabito: "",
-        examenFisicoPeso: 0,
-        examenFisicoTalla: 0,
-        examenFisicoIMC: 0,
-        examenFisicoTA: "",
-        examenFisicoFC: "",
-        examenFisicoFR: "",
-        examenFisicoTemperatura: "",
-        examenFisicoSistemaNervioso: "",
-        examenFisicoAPCardiovascular: "",
-        examenFisicoAPRespiratorio: "",
-        examenFisicoAPDigestivo: "",
-        examenFisicoAPGenitourinario: "",
-        examenFisicoSistemaEndocrino: "",
-        examenFisicoSistemaHematopoyetico: "",
-        examenFisicoSistemaMusculoEsqueletico: "",
-        examenFisicoPielAnexos: "",
-      },
-    };
+  name: 'FormularioPaciente',
+  components: {
+    FormKit
   },
-  methods: {
-    guardarPaciente() {
-      // Make Axios POST request
+  setup() {
+    const router = useRouter()
+
+    const nuevoPaciente = ref({
+      nombre: '',
+      apellido: '',
+      dni: '',
+      sexo: '',
+      edad: '',
+      fechaNacimiento: '',
+      lugarNacimiento: '',
+      direccion: '',
+      telefonoFijo: '',
+      telefonoCelular: '',
+      ocupacion: '',
+      estadoCivil: '',
+      obraSocial: '',
+      afiliadoObraSocial: '',
+      antecedentesPersonalesMedicos: '',
+      antecedentesQuirurgicos: '',
+      alergias: '',
+      antecedentesHeredoFamiliares: '',
+      habitosToxicos: '',
+      medicacionHabitual: '',
+      examenFisicoHabito: '',
+      examenFisicoPeso: '',
+      examenFisicoTalla: '',
+      examenFisicoIMC: '',
+      examenFisicoTA: '',
+      examenFisicoFC: '',
+      examenFisicoFR: '',
+      examenFisicoTemperatura: '',
+      examenFisicoSistemaNervioso: '',
+      examenFisicoAPCardiovascular: '',
+      examenFisicoAPRespiratorio: '',
+      examenFisicoAPDigestivo: '',
+      examenFisicoAPGenitourinario: '',
+      examenFisicoSistemaEndocrino: '',
+      examenFisicoSistemaHematopoyetico: '',
+      examenFisicoAPLocomotor: '',
+      impresionDiagnostica: '',
+    })
+    
+    const selectedFile = ref(null)
+
+    const onFileChange = (event) => {
+      selectedFile.value = event.target.files[0]
+    }
+    
+    const volver = () => {
+      router.push('/')
+    }
+
+    const guardarPaciente = () => {
+      const formData = new FormData()
+      for (const key in nuevoPaciente.value) {
+        formData.append(key, nuevoPaciente.value[key])
+      }
+      if (selectedFile.value) {
+        formData.append("file", selectedFile.value)
+      }
+
       axios
-        .post("/paciente/crear", this.nuevoPaciente)
+        .post("/paciente/crear", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((response) => {
-          console.log(response.data);
-          // Handle success, e.g., show a success message
+          console.log(response.data)
+          volver();
         })
         .catch((error) => {
-          console.error("Error:", error);
-          // Handle error, e.g., show an error message
-        });
-    },
+          console.error("Error:", error)
+        })
+    }
+      // Función para calcular la edad a partir de la fecha de nacimiento
+      const calcularEdad = (fechaNacimiento) => {
+      const hoy = new Date()
+      const fechaNac = new Date(fechaNacimiento)
+      let edad = hoy.getFullYear() - fechaNac.getFullYear()
+      const mes = hoy.getMonth() - fechaNac.getMonth()
+      if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+        edad--
+      }
+      return edad
+    }
+
+    // Observar cambios en fecha de nacimiento para calcular la edad
+    watch(() => nuevoPaciente.value.fechaNacimiento, (val, prevVal) => {
+      if (val !== prevVal) {
+        nuevoPaciente.value.edad = calcularEdad(val)
+      }
+    })
+
+    return {
+      nuevoPaciente,
+      selectedFile,
+      onFileChange,
+      guardarPaciente,
+      volver
+    }
   },
-};
+  
+}
 </script>
 
 <style scoped>
-.router-link {
-  color: inherit; /* Hereda el color del texto del elemento padre */
-  text-decoration: none; /* Elimina la decoración del enlace */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
-  /* Agrega otros estilos según sea necesario */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 20px;
 }
+.card-header {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+.card-body .row {
+  margin-bottom: 15px;
+}
+.card-footer{
+  text-align: right;
+  
+}
+.btn-guardar {
+  text-align: right;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.btn-cancelar {
+  text-align: right;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-guardar:hover {
+  background-color: #0056b3;
+}
+
+.btn-cancelar:hover {
+  background-color: #a33939;
+}
+
 </style>

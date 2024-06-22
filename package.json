@@ -8,7 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@formkit/vue": "^1.4.0",
+    "@formkit/themes": "^1.6.5",
+    "@formkit/vue": "^1.6.5",
     "axios": "^1.6.5",
     "bootstrap": "^5.3.2",
     "mdb-vue-ui-kit": "^4.1.1",
