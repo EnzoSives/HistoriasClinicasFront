@@ -27,6 +27,7 @@
                   <div class="card-header">Imagen</div>
                   <div class="card-body">
                     <img v-if="paciente.imagen" :src="`/uploads/${paciente.imagen}`" alt="Imagen del paciente" class="card-img" @click="mostrarImagen">
+                    <img v-if="paciente.imagen2" :src="`/uploads/${paciente.imagen2}`" alt="Imagen del paciente" class="card-img" @click="mostrarImagen">
                     <p v-else>No hay imagen disponible</p>
                   </div>
                 </div>

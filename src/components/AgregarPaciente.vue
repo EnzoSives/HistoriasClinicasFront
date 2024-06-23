@@ -148,7 +148,10 @@
           <FormKit type="text" name="impresionDiagnostica" v-model="nuevoPaciente.impresionDiagnostica" label="Impresión Diagnóstica" />
         </div>
         <div class="col">
-          <FormKit type="file" accept=".pdf,.png,.jpg" name="archivo" fileRemove noFile='false' help="Solo perimite archivos .jpg .png" @change="onFileChange" label="Adjuntar Archivo" />
+          <FormKit type="file" accept=".pdf,.png,.jpg" name="archivo1" fileRemove noFile='false' help="Solo permite archivos .jpg .png" @change="onFileChange($event, 1)" label="Adjuntar Archivo 1" />
+        </div>
+        <div class="col">
+          <FormKit type="file" accept=".pdf,.png,.jpg" name="archivo2" fileRemove noFile='false' help="Solo permite archivos .jpg .png" @change="onFileChange($event, 2)" label="Adjuntar Archivo 2" />
         </div>
       </div>
     </div>
@@ -160,7 +163,7 @@
 </template>
 
 <script>
-import { ref, watch} from 'vue'
+import { ref, watch } from 'vue'
 import { FormKit } from '@formkit/vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
@@ -212,13 +215,17 @@ export default {
       examenFisicoAPLocomotor: '',
       impresionDiagnostica: '',
     })
-    
-    const selectedFile = ref(null)
 
-    const onFileChange = (event) => {
-      selectedFile.value = event.target.files[0]
+    const selectedFiles = ref({ archivo1: null, archivo2: null })
+
+    const onFileChange = (event, archivoNumber) => {
+      if (archivoNumber === 1) {
+        selectedFiles.value.archivo1 = event.target.files[0]
+      } else if (archivoNumber === 2) {
+        selectedFiles.value.archivo2 = event.target.files[0]
+      }
     }
-    
+
     const volver = () => {
       router.push('/')
     }
@@ -228,8 +235,11 @@ export default {
       for (const key in nuevoPaciente.value) {
         formData.append(key, nuevoPaciente.value[key])
       }
-      if (selectedFile.value) {
-        formData.append("file", selectedFile.value)
+      if (selectedFiles.value.archivo1) {
+        formData.append("files", selectedFiles.value.archivo1)
+      }
+      if (selectedFiles.value.archivo2) {
+        formData.append("files", selectedFiles.value.archivo2)
       }
 
       axios
@@ -246,8 +256,9 @@ export default {
           console.error("Error:", error)
         })
     }
-      // Función para calcular la edad a partir de la fecha de nacimiento
-      const calcularEdad = (fechaNacimiento) => {
+
+    // Función para calcular la edad a partir de la fecha de nacimiento
+    const calcularEdad = (fechaNacimiento) => {
       const hoy = new Date()
       const fechaNac = new Date(fechaNacimiento)
       let edad = hoy.getFullYear() - fechaNac.getFullYear()
@@ -267,15 +278,15 @@ export default {
 
     return {
       nuevoPaciente,
-      selectedFile,
+      selectedFiles,
       onFileChange,
       guardarPaciente,
       volver
     }
   },
-  
 }
 </script>
+
 
 <style scoped>
 .card {

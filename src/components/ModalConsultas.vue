@@ -172,4 +172,7 @@ export default {
 .show {
   display: block;
 }
+button{
+  margin: 2px;
+}
 </style>

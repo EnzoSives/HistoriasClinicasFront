@@ -206,7 +206,7 @@ export default {
   justify-content: start;
 }
 .custom-search {
-  width: 250px;
+  width: 29%;
   font-size: 14px;
   margin-top: 70px;
   margin-left: 10px;
