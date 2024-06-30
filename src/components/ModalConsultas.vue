@@ -9,13 +9,13 @@
         <div class="modal-body">
           <button type="button" class="btn btn-primary" @click="abrirAgregarConsultaModal">Agregar Consulta</button>
           
-          <div v-if="consultas.length > 0">
+          <div v-if="localConsultas.length > 0">
             <div v-for="(consulta, index) in paginatedConsultas" :key="index" class="card">
               <div class="card-body">
                 <h5 class="card-title">{{ formatearFecha(consulta.fechaHoraInicio) }}</h5>
                 <p class="card-text">{{ consulta.motivoConsulta }}</p>
                 <button type="button" class="btn btn-outline-primary" @click="verObservaciones(consulta.observaciones)">Ver Observaciones</button>
-                <button type="button" class="btn btn-secondary" @click="editarConsulta(consulta.id)">Editar</button>
+                <button type="button" class="btn btn-secondary" @click="editarConsulta(consulta)">Editar</button>
                 <button type="button" class="btn btn-danger" @click="eliminarConsulta(consulta.id)">Eliminar</button>
               </div>
             </div>
@@ -24,7 +24,7 @@
             <p>No hay consultas registradas para este paciente.</p>
           </div>
 
-          <ul v-if="consultas.length > 0" class="pagination justify-content-end mt-3">
+          <ul v-if="localConsultas.length > 0" class="pagination justify-content-end mt-3">
             <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
               <a class="page-link" @click="setPage(currentPage - 1)">Anterior</a>
             </li>
@@ -36,7 +36,11 @@
             </li>
           </ul>
 
+          <!-- Agregar ConsultaEdicion dentro del modal -->
+          <EditarConsulta v-if="modoEdicion" :showModal="showModal" :consulta="consultaParaEditar" @actualizarConsulta="actualizarConsulta" @cerrar="cerrarConsultaEdicion" />
+
           <ObservacionesModal :showModal="showObservacionesModal" :observaciones="observacionesModalContent" @cerrar="cerrarObservacionesModal" />
+          <!-- Ajustar la lógica del modal para agregar consulta -->
           <AgregarConsultaModal :showModal="showAgregarConsultaModal" :paciente="paciente" @guardar="guardarConsulta" @cerrar="cerrarAgregarConsultaModal" />
         </div>
       </div>
@@ -47,7 +51,8 @@
 <script>
 import axios from 'axios';
 import ObservacionesModal from '../components/ModalObservaciones.vue';
-import AgregarConsultaModal from '../components/ModalAgregarConsulta.vue';
+import AgregarConsultaModal from '../components/ModalAgregarConsulta.vue'; // Asegúrate que este sea el componente correcto
+import EditarConsulta from '../components/EditarConsulta.vue';
 
 export default {
   props: {
@@ -61,7 +66,8 @@ export default {
   },
   components: {
     ObservacionesModal,
-    AgregarConsultaModal,
+    AgregarConsultaModal, // Asegúrate de importar el componente correcto
+    EditarConsulta,
   },
   data() {
     return {
@@ -69,12 +75,22 @@ export default {
       showObservacionesModal: false,
       observacionesModalContent: '',
       showAgregarConsultaModal: false,
+      modoEdicion: false,
       consultaParaEditar: null,
+      localConsultas: [...this.consultas] // Crear una copia de consultas en el estado local
+    }
+  },
+  watch: {
+    consultas: {
+      handler(newConsultas) {
+        this.localConsultas = [...newConsultas];
+      },
+      deep: true
     }
   },
   computed: {
     orderedConsultas() {
-      return [...this.consultas].sort((a, b) => new Date(b.fechaHoraInicio) - new Date(a.fechaHoraInicio));
+      return [...this.localConsultas].sort((a, b) => new Date(b.fechaHoraInicio) - new Date(a.fechaHoraInicio));
     },
     paginatedConsultas() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -111,6 +127,34 @@ export default {
     cerrarAgregarConsultaModal() {
       this.showAgregarConsultaModal = false;
     },
+    editarConsulta(consulta) {
+      this.consultaParaEditar = consulta;
+      this.modoEdicion = true; // Activar el modo de edición
+    },
+    async eliminarConsulta(idConsulta) {
+      try {
+        await axios.delete(`consulta/eliminar/${idConsulta}`);
+        this.localConsultas = this.localConsultas.filter(consulta => consulta.id !== idConsulta);
+        this.$emit('actualizarConsultas', this.localConsultas); // Emitir evento para actualizar el prop consultas
+      } catch (error) {
+        console.error('Error eliminando la consulta:', error);
+        alert('Hubo un problema eliminando la consulta. Por favor, inténtelo de nuevo.');
+      }
+    },
+    actualizarConsulta(consultaActualizada) {
+      // Aquí podrías realizar la actualización de la consulta en el backend
+      // Por ahora, simularemos la actualización en el frontend
+
+      const index = this.localConsultas.findIndex(c => c.id === consultaActualizada.id);
+      if (index !== -1) {
+        this.localConsultas.splice(index, 1, consultaActualizada);
+        this.modoEdicion = false; // Desactivar el modo de edición
+        this.$emit('actualizarConsultas', this.localConsultas); // Emitir evento para actualizar el prop consultas
+      }
+    },
+    cerrarConsultaEdicion() {
+      this.modoEdicion = false; // Desactivar el modo de edición al cerrar la ventana de edición
+    },
     async guardarConsulta(nuevaConsulta) {
       try {
         // Formatea la fecha y hora como una cadena ISO 8601
@@ -125,22 +169,10 @@ export default {
         alert('Hubo un problema guardando la consulta. Por favor, inténtelo de nuevo.');
       }
     },
-    editarConsulta(consulta) {
-      this.consultaParaEditar = consulta;
-      this.abrirAgregarConsultaModal();
-    },
-    async eliminarConsulta(idConsulta) {
-      try {
-        await axios.delete(`consulta/eliminar/${idConsulta}`);
-        this.consultas = this.consultas.filter(consulta => consulta.id_consulta !== idConsulta);
-      } catch (error) {
-        console.error('Error eliminando la consulta:', error);
-        alert('Hubo un problema eliminando la consulta. Por favor, inténtelo de nuevo.');
-      }
-    }
   },
 };
 </script>
+
 
 <style scoped>
 .modal {
@@ -172,7 +204,7 @@ export default {
 .show {
   display: block;
 }
-button{
+button {
   margin: 2px;
 }
 </style>

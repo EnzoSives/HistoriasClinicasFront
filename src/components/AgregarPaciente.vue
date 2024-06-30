@@ -154,6 +154,9 @@
           <FormKit type="file" accept=".pdf,.png,.jpg" name="archivo2" fileRemove noFile='false' help="Solo permite archivos .jpg .png" @change="onFileChange($event, 2)" label="Adjuntar Archivo 2" />
         </div>
       </div>
+      <div class="row align-items-start">
+        <FormKit type="textarea" name="primerObservacion" v-model="nuevoPaciente.primerObservacion" label="Observaciones" />
+      </div>
     </div>
     <div class="card-footer">
       <button class="btn-guardar" @click="guardarPaciente">Guardar</button>
@@ -214,6 +217,7 @@ export default {
       examenFisicoSistemaHematopoyetico: '',
       examenFisicoAPLocomotor: '',
       impresionDiagnostica: '',
+      primerObservacion: '',
     })
 
     const selectedFiles = ref({ archivo1: null, archivo2: null })
