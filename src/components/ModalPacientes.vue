@@ -26,8 +26,8 @@
                 <div class="card">
                   <div class="card-header">Imagen</div>
                   <div class="card-body">
-                    <img v-if="paciente.imagen" :src="`/uploads/${paciente.imagen}`" alt="Imagen del paciente" class="card-img" @click="mostrarImagen">
-                    <img v-if="paciente.imagen2" :src="`/uploads/${paciente.imagen2}`" alt="Imagen del paciente" class="card-img" @click="mostrarImagen">
+                    <img v-if="paciente.imagen" :src="`/uploads/${paciente.imagen}`" alt="Imagen del paciente" class="card-img" @click="mostrarImagen($event)" style="padding-right: 5px;">
+                    <img v-if="paciente.imagen2" :src="`/uploads/${paciente.imagen2}`" alt="Imagen del paciente" class="card-img" @click="mostrarImagen($event)">
                     <p v-else>No hay imagen disponible</p>
                   </div>
                 </div>
@@ -83,7 +83,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   props: {
@@ -101,8 +100,8 @@ export default {
     cerrarModal() {
       this.$emit('cerrar');
     },
-    mostrarImagen() {
-      this.imageSrc = `/uploads/${this.paciente.imagen}`;
+    mostrarImagen(event) {
+      this.imageSrc = event.target.src;
       this.showImageModal = true;
     },
     cerrarImagenModal() {
@@ -111,7 +110,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .modal {
@@ -143,7 +141,8 @@ export default {
   padding: 10px;
 }
 .card-img {
-  width: 50%;
+  width: 170px; /* Ajusta el tamaño de la imagen al 100% del contenedor */
+  height: 170px;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -171,7 +170,6 @@ export default {
   margin: auto;
   max-width: 90%;
   max-height: 90%;
-  
 }
 .close {
   position: absolute;

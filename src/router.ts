@@ -1,27 +1,36 @@
-
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from './views/home.vue';
+import Home from './views/Home.vue'; // Asumiendo que tienes un componente Home
 import Pacientes from './components/AgregarPaciente.vue';
-import Consultas from './components/AgregarConsulta.vue';
-import './axios'
+// import Consultas from './components/AgregarConsulta.vue';
+import LoginPage from './views/LoginPage.vue'; // Importa la página de login
+
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
     component: Home,
+
   },
   {
     path: '/pacientes',
     name: 'Pacientes',
     component: Pacientes,
+
   },
+  // {
+  //   path: '/consultas',
+  //   name: 'Consultas',
+  //   component: Consultas,
+
+  // },
   {
-    path: '/consultas',
-    name: 'Consultas',
-    component: Consultas,
+    path: '/login',
+    name: 'LoginPage',
+    component: LoginPage,
   },
-  // Agrega más rutas según sea necesario
+
+  // Otras rutas de tu aplicación
 ];
 
 const router = createRouter({

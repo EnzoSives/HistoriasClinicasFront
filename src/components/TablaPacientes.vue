@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="acciones">
-      <router-link to="/pacientes" id="btn" class="btn btn-outline-primary">Agregar paciente</router-link>
+    <div class="acciones" style="margin-top: 10px;">
+      <router-link to="/pacientes" id="btn" class="btn btn-primary">Agregar paciente</router-link>
       <input class="form-control custom-search border-secondary" type="search" placeholder="Buscar paciente por nombre o apellido" aria-label="Search" v-model="busqueda">
     </div>
 
-    <div class="container-fluid w-100">
+    <div class="container-fluid w-100" style="margin-top: 20px; overflow: auto;">
       <div class="row">
         <div class="col">
           <div class="card">
@@ -16,7 +16,6 @@
                   <!-- Encabezado de la tabla -->
                   <thead>
                     <tr>
-                  
                       <th scope="col">Nombre</th>
                       <th scope="col">Apellido</th>
                       <th scope="col">DNI</th>
@@ -28,15 +27,14 @@
           
                   <tbody>
                     <tr v-for="(paciente, index) in pacientesPaginados" :key="index">
-                      
                       <td>{{ paciente.nombre }}</td>
                       <td>{{ paciente.apellido }}</td>
                       <td>{{ paciente.dni }}</td>
                       <td>{{ paciente.obraSocial }}</td>
                       <td>{{ paciente.afiliadoObraSocial }}</td>
                       <td>
-                        <button @click="mostrarPacientes(paciente)" type="button" class="btn btn-secondary">Info</button> 
-                        <button style="margin-left: 5px;" @click="mostrarConsultas(paciente)" type="button" class="btn btn-outline-secondary">Consultas</button>
+                        <button @click="mostrarPacientes(paciente)" type="button" id="botonInfo" class="btn btn-outline-dark border-dark">Info</button> 
+                        <button style="margin-left: 5px;" @click="mostrarConsultas(paciente)" type="button" id="botonConsultas" class="btn btn-success">Consultas</button>
                       </td>
                     </tr>
                   </tbody>
@@ -187,11 +185,14 @@ export default {
       // Obtener el índice de inicio y fin del rango de pacientes por página
       const inicio = (this.currentPage - 1) * this.pacientesPorPagina;
       const fin = inicio + this.pacientesPorPagina;
-      // Aplicar el filtro de búsqueda a la lista completa de pacientes y luego paginar los resultados
-      return this.pacientes.filter(paciente => {
+      // Aplicar el filtro de búsqueda a la lista completa de pacientes y luego ordenar por ID de manera descendente
+      const pacientesFiltrados = this.pacientes.filter(paciente => {
         const terminoBusqueda = this.busqueda.toLowerCase();
         return paciente.nombre.toLowerCase().includes(terminoBusqueda) || paciente.apellido.toLowerCase().includes(terminoBusqueda);
-      }).slice(inicio, fin);
+      }).sort((a, b) => b.id_paciente - a.id_paciente); // Ordenar por ID descendente
+
+      // Paginar los resultados ordenados
+      return pacientesFiltrados.slice(inicio, fin);
     }
   }
 }
@@ -200,6 +201,7 @@ export default {
 <style scoped>
 .container-fluid {
   margin-top: 10px;
+  overflow: auto; /* Asegúrate de que el contenedor pueda hacer scroll */
 }
 .acciones {
   display: flex;
@@ -214,6 +216,13 @@ export default {
 #btn {
   margin-top: 70px;
   margin-left: 10px;
+}
+
+#botonConsultas{
+  background-color: #20c997;
+}
+#botonConsultas:hover{
+  background-color: #0e664b;
 }
 
 .router-link {

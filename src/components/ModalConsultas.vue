@@ -8,9 +8,15 @@
         </div>
         <div class="modal-body">
           <button type="button" class="btn btn-primary" @click="abrirAgregarConsultaModal">Agregar Consulta</button>
-          
+          <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Primer Consulta</h5>
+                <p class="card-text">{{ paciente.primerObservacion }}</p>
+              </div>
+              </div>
           <div v-if="localConsultas.length > 0">
             <div v-for="(consulta, index) in paginatedConsultas" :key="index" class="card">
+              
               <div class="card-body">
                 <h5 class="card-title">{{ formatearFecha(consulta.fechaHoraInicio) }}</h5>
                 <p class="card-text">{{ consulta.motivoConsulta }}</p>

@@ -8,24 +8,30 @@ export const useAuthStore = defineStore('auth', {
     token: '',
     isAuthenticated: false,
   }),
-
   actions: {
-    async register(username:string, email:string, password:string) {
-      const response = await axios.post('/auth/register', { username, email, password });
-      this.token = response.data.access_token;
-      localStorage.setItem('access-token', this.token);
-      router.push('/login');
+    async register(username: string, email: string, password: string) {
+      try {
+        const response = await axios.post('/auth/register', { username, email, password });
+        this.token = response.data.access_token;
+        localStorage.setItem('access-token', this.token);
+        router.push('/login');
+      } catch (error) {
+        console.error('Error al registrar:', error);
+        // Aquí puedes manejar el error, por ejemplo, mostrando un mensaje al usuario.
+      }
     },
 
-    async login(email:string, password:string) {
+    async login(email: string, password: string) {
       try {
         const response = await axios.post('/auth/login', { email, password });
         this.token = response.data.access_token;
         localStorage.setItem('access-token', this.token);
+        this.isAuthenticated = true; // Asegura que el estado se actualice correctamente
         console.log('Token de inicio de sesión:', this.token);
-        router.push('/secretaria');
+        router.push('/');
       } catch (error) {
         console.error('Error al iniciar sesión:', error);
+        // Aquí puedes manejar el error, por ejemplo, mostrando un mensaje al usuario.
       }
     },
 
@@ -48,6 +54,8 @@ export const useAuthStore = defineStore('auth', {
           localStorage.removeItem('access-token');
           this.isAuthenticated = false;
         }
+      } else {
+        this.isAuthenticated = false; // Asegura que el estado se actualice correctamente
       }
     },
 
@@ -56,7 +64,18 @@ export const useAuthStore = defineStore('auth', {
       this.isAuthenticated = false;
       localStorage.removeItem('access-token');
       console.log('Usuario desconectado');
-      router.push('/login'); // Redirige a la página de inicio de sesión
+      router.push('/login');
+    },
+    // Esto asegura que al recargar la página se valide el token almacenado en localStorage
+    persist: {
+      enabled: true,
+      strategies: [
+        {
+          key: 'auth',
+          storage: localStorage,
+        },
+      ],
     },
   },
+
 });

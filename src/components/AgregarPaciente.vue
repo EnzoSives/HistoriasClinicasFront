@@ -1,5 +1,8 @@
 <template>
-  <div class="card">
+  <div v-if="!isAuthenticated">
+    Pagina no disponible
+  </div>
+  <div v-else class="card">
     <div class="card-header">Primer consulta</div>
     <div class="card-body">
       <div class="row align-items-start">
@@ -140,13 +143,14 @@
           <FormKit type="text" name="examenFisicoSistemaHematopoyetico" v-model="nuevoPaciente.examenFisicoSistemaHematopoyetico" label="Examen Físico Sistema Hematopoyético" />
         </div>
         <div class="col">
-          <FormKit type="text" name="examenFisicoAPLocomotor" v-model="nuevoPaciente.examenFisicoAPLocomotor" label="Examen Físico Aparato Locomotor" />
+          <FormKit type="text" name="examenFisicoSistemaMusculoEsqueletico" v-model="nuevoPaciente.examenFisicoSistemaMusculoEsqueletico" label="Examen Físico Aparato Locomotor" />
+        </div>
+        <div class="col">
+          <FormKit type="text" name="examenFisicoPielAnexos" v-model="nuevoPaciente.examenFisicoPielAnexos" label="Examen Físico Aparato Locomotor" />
         </div>
       </div>
       <div class="row align-items-start">
-        <div class="col">
-          <FormKit type="text" name="impresionDiagnostica" v-model="nuevoPaciente.impresionDiagnostica" label="Impresión Diagnóstica" />
-        </div>
+       
         <div class="col">
           <FormKit type="file" accept=".pdf,.png,.jpg" name="archivo1" fileRemove noFile='false' help="Solo permite archivos .jpg .png" @change="onFileChange($event, 1)" label="Adjuntar Archivo 1" />
         </div>
@@ -163,13 +167,15 @@
       <button class="btn-cancelar" @click="volver" >Cancelar</button>
     </div>
   </div>
+  
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref, watch, computed} from 'vue'
 import { FormKit } from '@formkit/vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '../store'
 
 export default {
   name: 'FormularioPaciente',
@@ -178,7 +184,10 @@ export default {
   },
   setup() {
     const router = useRouter()
+    const authStore = useAuthStore();
+    const isAuthenticated = computed(() => authStore.isAuthenticated);
 
+    
     const nuevoPaciente = ref({
       nombre: '',
       apellido: '',
@@ -215,8 +224,9 @@ export default {
       examenFisicoAPGenitourinario: '',
       examenFisicoSistemaEndocrino: '',
       examenFisicoSistemaHematopoyetico: '',
-      examenFisicoAPLocomotor: '',
-      impresionDiagnostica: '',
+      examenFisicoSistemaMusculoEsqueletico: '',
+      examenFisicoPielAnexos: '',
+      
       primerObservacion: '',
     })
 
@@ -247,7 +257,7 @@ export default {
       }
 
       axios
-        .post("/paciente/crear", formData, {
+        .post("paciente/crear", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -280,12 +290,15 @@ export default {
       }
     })
 
+    
+
     return {
       nuevoPaciente,
       selectedFiles,
       onFileChange,
       guardarPaciente,
-      volver
+      volver,
+      isAuthenticated
     }
   },
 }
