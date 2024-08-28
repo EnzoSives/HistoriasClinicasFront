@@ -1,8 +1,5 @@
 <template>
-  <div v-if="!isAuthenticated">
-    Pagina no disponible
-  </div>
-  <div v-else class="card">
+  <div v-if="isAuthenticated" class="card">
     <div class="card-header">Primer consulta</div>
     <div class="card-body">
       <div class="row align-items-start">
@@ -167,27 +164,39 @@
       <button class="btn-cancelar" @click="volver" >Cancelar</button>
     </div>
   </div>
+  <div v-else>
+    <error-vue></error-vue>
+  </div>
   
 </template>
 
 <script>
-import { ref, watch, computed} from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import { FormKit } from '@formkit/vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../store'
+import ErrorVue from './ErrorVue.vue'
 
 export default {
   name: 'FormularioPaciente',
   components: {
-    FormKit
+    FormKit,
+    ErrorVue
   },
   setup() {
     const router = useRouter()
-    const authStore = useAuthStore();
-    const isAuthenticated = computed(() => authStore.isAuthenticated);
-
+    const authStore = useAuthStore()
+    const isAuthenticated = onMounted(() => authStore.isAuthenticated)
     
+    // Valida el token de autenticación al montar el componente
+    onMounted(() => {
+      if (!isAuthenticated) {
+        // Redirige al usuario a la página de inicio de sesión si no está autenticado
+        router.push({ name: 'LoginPage' })
+      }
+    })
+
     const nuevoPaciente = ref({
       nombre: '',
       apellido: '',
@@ -226,7 +235,6 @@ export default {
       examenFisicoSistemaHematopoyetico: '',
       examenFisicoSistemaMusculoEsqueletico: '',
       examenFisicoPielAnexos: '',
-      
       primerObservacion: '',
     })
 
@@ -241,7 +249,7 @@ export default {
     }
 
     const volver = () => {
-      router.push('/')
+      router.go('-1')
     }
 
     const guardarPaciente = () => {
@@ -264,7 +272,7 @@ export default {
         })
         .then((response) => {
           console.log(response.data)
-          volver();
+          volver()
         })
         .catch((error) => {
           console.error("Error:", error)
@@ -290,8 +298,6 @@ export default {
       }
     })
 
-    
-
     return {
       nuevoPaciente,
       selectedFiles,
@@ -303,6 +309,7 @@ export default {
   },
 }
 </script>
+
 
 
 <style scoped>

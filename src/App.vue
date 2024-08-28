@@ -17,19 +17,19 @@ export default{
   components:{
     
   },
-  // setup() {
-  //   const { isAuthenticated } = useAuthStore();
-  //   return {
-  //     isAuthenticated,
-  //   };
-  // },
-  // async created() {
-  //   const { validateToken } = useAuthStore();
-  //   try {
-  //     await validateToken();
-  //   } catch (error) {
-  //     console.error('Error al obtener la información del usuario:', error);
-  //   }
-  // },
+  setup() {
+    const { isAuthenticated } = useAuthStore();
+    return {
+      isAuthenticated,
+    };
+  },
+  async created() {
+    const { validateToken } = useAuthStore();
+    try {
+      await validateToken();
+    } catch (error) {
+      console.error('Error al obtener la información del usuario:', error);
+    }
+  },
 }
 </script>

@@ -2,6 +2,7 @@
   <div>
     <div class="acciones" style="margin-top: 10px;">
       <router-link to="/pacientes" id="btn" class="btn btn-primary">Agregar paciente</router-link>
+      <!-- <router-link to="/consultas" id="btn" class="btn btn-primary">Agregar paciente</router-link> -->
       <input class="form-control custom-search border-secondary" type="search" placeholder="Buscar paciente por nombre o apellido" aria-label="Search" v-model="busqueda">
     </div>
 
@@ -98,7 +99,7 @@ export default {
   },
   methods: {
     cargarDatosDeApi() {
-      axios.get('http://localhost:3000/paciente/all')
+      axios.get('/paciente/all')
         .then(response => {
           this.pacientes = response.data;
         })
@@ -121,12 +122,12 @@ export default {
     },
     mostrarConsultas(paciente) {
       this.consultasPaciente = []; // Limpiar las consultas antes de cargarlas
-      axios.get(`http://localhost:3000/paciente/${paciente.id_paciente}`)
+      axios.get(`/paciente/${paciente.id_paciente}`)
         .then(response => {
           // Guardar los datos completos del paciente obtenidos de la API
           this.pacienteSeleccionado = response.data;
           // Luego, intentar obtener las consultas del paciente
-          return axios.get(`http://localhost:3000/consulta/paciente/${paciente.id_paciente}`);
+          return axios.get(`/consulta/paciente/${paciente.id_paciente}`);
         })
         .then(response => {
           // Guardar las consultas del paciente, si existen
@@ -143,12 +144,12 @@ export default {
         });
     },
     mostrarPacientes(paciente) {
-      axios.get(`http://localhost:3000/paciente/${paciente.id_paciente}`)
+      axios.get(`/paciente/${paciente.id_paciente}`)
         .then(response => {
           // Guardar los datos completos del paciente obtenidos de la API
           this.pacienteSeleccionado = response.data;
           // Luego, intentar obtener las consultas del paciente
-          return axios.get(`http://localhost:3000/consulta/paciente/${paciente.id_paciente}`);
+          return axios.get(`/consulta/paciente/${paciente.id_paciente}`);
         })
         .then(response => {
           // Guardar las consultas del paciente, si existen

@@ -6,6 +6,7 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
     token: '',
+    email: '',
     isAuthenticated: false,
   }),
   actions: {
@@ -21,14 +22,24 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-    async login(email: string, password: string) {
+    async login(email:string, password: string) {
       try {
         const response = await axios.post('/auth/login', { email, password });
         this.token = response.data.access_token;
+        this.email = response.data.email;
         localStorage.setItem('access-token', this.token);
+        localStorage.setItem('email', this.email);
         this.isAuthenticated = true; // Asegura que el estado se actualice correctamente
         console.log('Token de inicio de sesión:', this.token);
+        
+        // Llama a validateToken después de iniciar sesión
+        await this.validateToken();
+
         router.push('/');
+        // Redirige al usuario y recarga la página
+        // router.push('/home').then(() => {
+        //   window.location.reload(); // Recarga la página
+        // });
       } catch (error) {
         console.error('Error al iniciar sesión:', error);
         // Aquí puedes manejar el error, por ejemplo, mostrando un mensaje al usuario.
@@ -37,34 +48,41 @@ export const useAuthStore = defineStore('auth', {
 
     async validateToken() {
       const token = localStorage.getItem('access-token');
-
-      if (token) {
+      const email = localStorage.getItem('email');
+    
+      if (token && email) {
         try {
           const response = await axios.get('/auth/user', {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`
             },
+            params: { email: encodeURIComponent(email) } // Codifica el email
           });
-
-          this.user = response.data;
+    
+          this.user = response.data.user.username;
           this.isAuthenticated = true;
-          console.log('Token validado correctamente');
+          console.log('Token validado correctamente', this.user);
+          
         } catch (error) {
           console.error('Error al validar el token:', error);
-          localStorage.removeItem('access-token');
+        
+          this.user = null;
           this.isAuthenticated = false;
+          alert('Sesión expirada. Por favor, inicia sesión de nuevo.');
         }
       } else {
-        this.isAuthenticated = false; // Asegura que el estado se actualice correctamente
+        this.user = null;
+        this.isAuthenticated = false;
       }
     },
-
+    
     logout() {
       this.user = null;
       this.isAuthenticated = false;
       localStorage.removeItem('access-token');
+      localStorage.removeItem('email');
       console.log('Usuario desconectado');
-      router.push('/login');
+      router.push('/');
     },
     // Esto asegura que al recargar la página se valide el token almacenado en localStorage
     persist: {
@@ -77,5 +95,4 @@ export const useAuthStore = defineStore('auth', {
       ],
     },
   },
-
 });

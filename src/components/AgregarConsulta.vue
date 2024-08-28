@@ -15,6 +15,204 @@
               id="fechaHoraInicio"
             />
           </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="fechaHoraInicio" class="form-label"
+              >Fecha y Hora de Inicio</label
+            >
+            <input
+              v-model="nuevaConsulta.fechaHoraInicio"
+              type="datetime-local"
+              class="form-control"
+              id="fechaHoraInicio"
+            />
+          </div>
         </div>
         <div class="col">
           <div class="mb-3"></div>
@@ -34,6 +232,171 @@
               v-model="nuevaConsulta.motivoConsulta"
               class="form-control"
               id="motivoConsulta"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="observaciones" class="form-label">MObservaciones</label>
+            <textarea
+              v-model="nuevaConsulta.observaciones"
+              class="form-control"
+              id="observaciones"
               rows="3"
             ></textarea>
           </div>
@@ -71,8 +434,8 @@
           >
             Guardar Consulta
           </button>
-          <button class="btn btn-danger">
-            <router-link to="/" class="router-link">Cancelar</router-link>
+          <button class="btn btn-danger router-link" @click="volver">
+            Cancelar
           </button>
         </div>
       </div>
@@ -82,6 +445,7 @@
   
   <script>
 import axios from "axios";
+import router from 'vue';
 
 export default {
   data() {
@@ -94,6 +458,9 @@ export default {
     };
   },
   methods: {
+    volver(){
+      router.go(-1);
+    },
     guardarConsulta() {
       axios
         .post("/consulta/crear", this.nuevaConsulta)

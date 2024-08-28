@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Historias Clinicas</a>
+      <a class="navbar-brand" href="#">Bienvenido/a {{ user }}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,7 +32,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <button class="btn btn-outline-danger" @click="logout">Logout</button>
+              <button class="btn btn-outline-danger" @click="logout">Salir</button>
             </li>
           </ul>
         </div>
@@ -42,10 +42,14 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { useAuthStore } from '../store/index';
 
 // Acceder al store de autenticación
 const authStore = useAuthStore();
+
+// Computed property para obtener el usuario
+const user = computed(() => authStore.user);
 
 // Método para hacer logout
 const logout = () => {
@@ -60,7 +64,7 @@ const logout = () => {
 }
 
 .offcanvas {
-  width: 250px; /* Ajusta el ancho del offcanvas según tus necesidades */
+  width: 50px; /* Ajusta el ancho del offcanvas según tus necesidades */
 }
 
 .offcanvas-header,

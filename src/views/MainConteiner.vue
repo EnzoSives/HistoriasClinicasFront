@@ -20,18 +20,11 @@ const isLoading = computed(() => authStore.token === '' && !authStore.isAuthenti
 
 <template>
   <div>
-    <!-- Mostrar un mensaje de carga mientras se valida el token -->
-    <!-- <div v-if="isLoading">Cargando...</div> -->
-
     <!-- Mostrar el LoginPage si el usuario no está autenticado y la carga ha terminado -->
-    <div v-if="isAuthenticated && !isLoading" >
+    <div v-if="isAuthenticated" >
     <NavBar />
       <Tabla />
       <Footer/>
-    </div>
-    <!-- Mostrar el resto de la aplicación si el usuario está autenticado -->
-    <div v-else>
-      <LoginPage />
     </div>
   </div>
 </template>
