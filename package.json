@@ -26,5 +26,5 @@
     "vue-cli-plugin-mdb5": "~2.1.0",
     "vue-tsc": "^1.8.25"
   },
-  "type": "module"
+  "type": "commonjs"
 }
