@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from './views/Home.vue'; // Asumiendo que tienes un componente Home
+import Home from './views/home.vue'; // Asumiendo que tienes un componente Home
 import Pacientes from './components/AgregarPaciente.vue';
 // import Consultas from './components/AgregarConsulta.vue';
 import LoginPage from './views/LoginPage.vue'; // Importa la página de login

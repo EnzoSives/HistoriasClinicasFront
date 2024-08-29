@@ -3,7 +3,7 @@ module.exports = {
       {
         name: "AppVue",
         script: "npm",
-        args: "run serve",
+        args: "run dev",
         watch: true,  // reiniciar automáticamente la aplicación al cambiar los archivos
         env: {
           NODE_ENV: "development",
