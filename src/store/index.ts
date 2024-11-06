@@ -35,11 +35,11 @@ export const useAuthStore = defineStore('auth', {
         // Llama a validateToken después de iniciar sesión
         await this.validateToken();
 
-        router.push('/');
+        // router.push('/');
         // Redirige al usuario y recarga la página
-        // router.push('/home').then(() => {
-        //   window.location.reload(); // Recarga la página
-        // });
+        router.push('/').then(() => {
+          window.location.reload(); // Recarga la página
+        });
       } catch (error) {
         console.error('Error al iniciar sesión:', error);
         // Aquí puedes manejar el error, por ejemplo, mostrando un mensaje al usuario.

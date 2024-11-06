@@ -11,7 +11,8 @@
     "@formkit/themes": "^1.6.5",
     "@formkit/vue": "^1.6.5",
     "axios": "^1.6.5",
-    "bootstrap": "^5.3.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "mdb-vue-ui-kit": "^4.1.1",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
+    "@vue/runtime-core": "^3.5.12",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vue-cli-plugin-mdb5": "~2.1.0",

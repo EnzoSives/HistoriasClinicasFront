@@ -1,4 +1,4 @@
-<script setup lang="">
+<script setup>
 import { computed, onMounted } from 'vue';
 import { useAuthStore } from '../store/index';
 import NavBar from '../components/NavBar.vue';
